@@ -4,3 +4,4 @@ linter:
   rules:
     public_member_api_docs: false
     depend_on_referenced_packages: false
+    one_member_abstracts: false
