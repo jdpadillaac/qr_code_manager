@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_code_manager/app_module.dart';
 import 'package:qr_code_manager_design_system/qr_code_manager_design_system.dart';
 
@@ -23,7 +24,16 @@ class App extends StatelessWidget {
         title: 'Qr code manager',
         routeInformationParser: Modular.routeInformationParser,
         routerDelegate: Modular.routerDelegate,
-        theme: ThemeData(scaffoldBackgroundColor: QcmColors.darkGunmeta),
+        theme: ThemeData(
+          scaffoldBackgroundColor: QcmColors.darkGunmeta,
+          textTheme: GoogleFonts.manropeTextTheme().copyWith(
+            headlineMedium: GoogleFonts.manrope().copyWith(
+              color: QcmColors.white,
+              fontWeight: FontWeight.w900,
+            ),
+            titleMedium: GoogleFonts.manrope().copyWith(color: QcmColors.white),
+          ),
+        ),
       ),
     );
   }

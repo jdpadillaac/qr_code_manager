@@ -7,7 +7,20 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const QcmPageTemplate(
-      body: Center(child: SingleChildScrollView(child: Column())),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              QcmHeadlineMedium('Bienvenido!', fontSize: 28),
+              QcmTitleMedium(
+                'Escanea y guarda tus códigos QR',
+                color: QcmColors.auroMetalSaurus,
+              ),
+              SizedBox(height: 50),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
