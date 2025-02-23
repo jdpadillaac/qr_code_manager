@@ -9,6 +9,7 @@ environment:
   sdk: ^3.7.0
 workspace:
   - packages/qr_code_manager_auth
+  - packages/qr_code_manager_design_system
 
 dependencies:
   cupertino_icons: ^1.0.8
