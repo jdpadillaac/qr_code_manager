@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart' show Modular;
 import 'package:qr_code_manager_design_system/qr_code_manager_design_system.dart';
@@ -92,7 +93,16 @@ class _FloatingAction extends StatelessWidget {
         backgroundColor: WidgetStateProperty.all(QcmColors.unitedNationsBlue),
       ),
       icon: const Icon(Icons.qr_code_scanner),
-      onPressed: () {},
+      onPressed: () async {
+        const methodChannel = MethodChannel('qr_scanner');
+
+        final result = await methodChannel.invokeMethod('scanQrCode');
+        if (result == null) {
+          print('nada');
+        } else {
+          print('ok $result');
+        }
+      },
     );
   }
 }

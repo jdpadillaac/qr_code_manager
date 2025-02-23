@@ -8,7 +8,8 @@ class DriftUser extends Table {
   TextColumn get userName => text()();
   TextColumn get email => text()();
   TextColumn get password => text()();
-  BoolColumn get enableBiometricAuth => boolean()();
+  BoolColumn get enableBiometricAuth =>
+      boolean().withDefault(const Constant(false))();
 }
 
 @DriftDatabase(tables: [DriftUser])
@@ -19,6 +20,6 @@ class DriftUserDataBase extends _$DriftUserDataBase {
   int get schemaVersion => 1;
 
   static QueryExecutor _openConnection() {
-    return driftDatabase(name: 'user_database');
+    return driftDatabase(name: 'user_db_v2');
   }
 }
