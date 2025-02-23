@@ -30,7 +30,7 @@ class _PageListener extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccessState) {
-          print('Todo bien');
+          Modular.to.pushReplacementNamed('/qr_home/home/');
         } else if (state is AuthErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Error al iniciar sesión')),
