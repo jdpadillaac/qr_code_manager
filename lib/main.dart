@@ -31,8 +31,27 @@ class App extends StatelessWidget {
               color: QcmColors.white,
               fontWeight: FontWeight.w900,
             ),
+            bodyLarge: GoogleFonts.manrope().copyWith(
+              color: QcmColors.white,
+              fontWeight: FontWeight.w500,
+            ),
             titleMedium: GoogleFonts.manrope().copyWith(color: QcmColors.white),
+            titleLarge: GoogleFonts.manrope().copyWith(color: QcmColors.white),
           ),
+
+          inputDecorationTheme: InputDecorationTheme(
+            fillColor: QcmColors.darkJungleGreen,
+            labelStyle: const TextStyle(color: QcmColors.white),
+            hintStyle: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: QcmColors.auroMetalSaurus),
+          ),
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: QcmColors.white,
+            selectionColor: QcmColors.white,
+            selectionHandleColor: QcmColors.white,
+          ),
+          iconTheme: const IconThemeData(color: QcmColors.white),
         ),
       ),
     );
