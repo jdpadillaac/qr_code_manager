@@ -16,6 +16,8 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		AF08AF872D6BE17300EA5D89 /* auth_helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF08AF862D6BE16E00EA5D89 /* auth_helper.swift */; };
+		AF08AF8A2D6BE1FB00EA5D89 /* QrCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF08AF892D6BE1F400EA5D89 /* QrCodeScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A722A37718228AB39ABB58F0 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		AF08AF862D6BE16E00EA5D89 /* auth_helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth_helper.swift; sourceTree = "<group>"; };
+		AF08AF892D6BE1F400EA5D89 /* QrCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScannerView.swift; sourceTree = "<group>"; };
 		B17E629D2A74C02A6D4EFA74 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +147,8 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				AF08AF882D6BE1C800EA5D89 /* QrScanner */,
+				AF08AF852D6BE15C00EA5D89 /* auth */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -153,6 +159,22 @@
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 			);
 			path = Runner;
+			sourceTree = "<group>";
+		};
+		AF08AF852D6BE15C00EA5D89 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				AF08AF862D6BE16E00EA5D89 /* auth_helper.swift */,
+			);
+			path = auth;
+			sourceTree = "<group>";
+		};
+		AF08AF882D6BE1C800EA5D89 /* QrScanner */ = {
+			isa = PBXGroup;
+			children = (
+				AF08AF892D6BE1F400EA5D89 /* QrCodeScannerView.swift */,
+			);
+			path = QrScanner;
 			sourceTree = "<group>";
 		};
 		EF193EB114D94EADB731A040 /* Frameworks */ = {
@@ -377,6 +399,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				AF08AF8A2D6BE1FB00EA5D89 /* QrCodeScannerView.swift in Sources */,
+				AF08AF872D6BE17300EA5D89 /* auth_helper.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
