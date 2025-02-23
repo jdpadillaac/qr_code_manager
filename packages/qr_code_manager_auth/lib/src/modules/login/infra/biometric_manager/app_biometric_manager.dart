@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:oxidized/oxidized.dart';
-import 'package:qr_code_manager_auth/src/login/domain/domain.dart';
+import 'package:qr_code_manager_auth/src/modules/login/domain/domain.dart';
 
 final class PlatformBiometricManager extends BiometricManager {
   @override

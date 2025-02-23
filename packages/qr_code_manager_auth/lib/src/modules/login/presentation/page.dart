@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:qr_code_manager_auth/src/login/presentation/bloc/auth/auth_bloc.dart';
-import 'package:qr_code_manager_auth/src/register/module.dart';
+import 'package:qr_code_manager_auth/src/modules/login/presentation/bloc/auth/auth_bloc.dart';
+import 'package:qr_code_manager_auth/src/modules/register/module.dart';
 import 'package:qr_code_manager_design_system/qr_code_manager_design_system.dart';
 
 part 'widgets/form.dart';

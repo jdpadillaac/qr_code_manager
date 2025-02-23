@@ -1,5 +1,5 @@
 import 'package:oxidized/oxidized.dart';
-import 'package:qr_code_manager_auth/src/login/domain/domain.dart';
+import 'package:qr_code_manager_auth/src/modules/login/domain/domain.dart';
 
 final class AppAuthService extends AuthService {
   const AppAuthService({required BiometricManager biometricManager})

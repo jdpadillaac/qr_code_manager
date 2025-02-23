@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:qr_code_manager_auth/src/register/presentation/bloc/register_user/register_user_bloc.dart';
+import 'package:qr_code_manager_auth/src/modules/register/presentation/bloc/register_user/register_user_bloc.dart';
 import 'package:qr_code_manager_design_system/qr_code_manager_design_system.dart';
 
 part 'widgets/back_to_login.dart';
