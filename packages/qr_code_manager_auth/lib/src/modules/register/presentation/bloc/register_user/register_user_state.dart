@@ -17,6 +17,10 @@ final class RegisterUserError extends RegisterUserState {
   const RegisterUserError();
 }
 
+final class NotBiometricEnableError extends RegisterUserState {
+  const NotBiometricEnableError();
+}
+
 final class RegisterUserSuccess extends RegisterUserState {
   const RegisterUserSuccess();
 }

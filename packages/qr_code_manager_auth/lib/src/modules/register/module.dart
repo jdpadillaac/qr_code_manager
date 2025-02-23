@@ -1,8 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:qr_code_manager_auth/src/modules/login/domain/interfaces/_interfaces.dart';
 import 'package:qr_code_manager_auth/src/modules/register/domain/interfaces/register_user_repo.dart';
 import 'package:qr_code_manager_auth/src/modules/register/infra/register_user_repo/register_user_repo.dart';
 import 'package:qr_code_manager_auth/src/modules/register/presentation/bloc/register_user/register_user_bloc.dart';
 import 'package:qr_code_manager_auth/src/modules/register/presentation/page.dart';
+import 'package:qr_code_manager_auth/src/shared/infra/biometric_manager/app_biometric_manager.dart';
 import 'package:qr_code_manager_auth/src/shared/infra/drift/user_db.dart';
 
 final class RegisterUserModule extends Module {
@@ -16,6 +18,7 @@ final class RegisterUserModule extends Module {
         DriftUserDataBase.new,
         config: BindConfig(onDispose: (value) => value.close()),
       )
+      ..add<BiometricManager>(PlatformBiometricManager.new)
       ..add<RegisterUserRepo>(DriftRegisterUserRepository.new);
     super.binds(i);
   }

@@ -39,6 +39,12 @@ class _Pagelistener extends StatelessWidget {
               content: QcmTitleMedium('Error al registrar el usuario'),
             ),
           );
+        } else if (state is NotBiometricEnableError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: QcmTitleMedium('Error al habilitar FaceId'),
+            ),
+          );
         }
       },
       child: const _View(),

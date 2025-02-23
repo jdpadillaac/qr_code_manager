@@ -12,6 +12,7 @@ class _FormState extends State<_Form> {
   late final TextEditingController _passwordController;
   late final TextEditingController _usernameController;
   late final GlobalKey<FormState> formKey;
+  bool _enableFaceId = false;
 
   @override
   void initState() {
@@ -57,6 +58,20 @@ class _FormState extends State<_Form> {
             hintText: 'Contraseña',
           ),
           QcmVerticalSpacing.xxlarge,
+          Row(
+            children: [
+              const QcmTitleMedium('¿Quieres habilitar Face ID?'),
+              QcmHorizontalSpacing.small,
+              QcmSwitch(
+                onChanged: (value) {
+                  setState(() {
+                    _enableFaceId = value;
+                  });
+                },
+              ),
+            ],
+          ),
+          QcmVerticalSpacing.medium,
           QcmElevatedButton(
             label: 'Registrate',
             onPressed: () {
@@ -66,6 +81,7 @@ class _FormState extends State<_Form> {
                     email: _emailController.text,
                     password: _passwordController.text,
                     username: _usernameController.text,
+                    enableFaceId: _enableFaceId,
                   ),
                 );
               }

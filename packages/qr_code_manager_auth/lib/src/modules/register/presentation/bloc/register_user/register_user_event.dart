@@ -10,12 +10,14 @@ class OnRegisterUserEvent extends RegisterUserEvent {
     required this.email,
     required this.password,
     required this.username,
+    required this.enableFaceId,
   });
 
   final String email;
   final String password;
   final String username;
+  final bool enableFaceId;
 
   @override
-  List<Object?> get props => [email, password, username];
+  List<Object?> get props => [email, password, username, enableFaceId];
 }
