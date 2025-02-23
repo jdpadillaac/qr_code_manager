@@ -15,8 +15,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => Modular.get<AuthBloc>(),
-
+      create:
+          (context) => Modular.get<AuthBloc>()..add(const ValidateAuthEvent()),
       child: const _PageListener(),
     );
   }
@@ -28,7 +28,15 @@ class _PageListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is AuthSuccessState) {
+          print('Todo bien');
+        } else if (state is AuthErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Error al iniciar sesión')),
+          );
+        }
+      },
       child: const _View(),
     );
   }

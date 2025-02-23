@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:qr_code_manager_auth/src/modules/login/domain/domain.dart';
 import 'package:qr_code_manager_auth/src/modules/register/domain/interfaces/register_user_repo.dart';
-import 'package:qr_code_manager_auth/src/modules/register/domain/models/register_user_model.dart';
+import 'package:qr_code_manager_auth/src/shared/domain/entity/user.dart';
 
 part 'register_user_event.dart';
 part 'register_user_state.dart';
@@ -36,10 +36,11 @@ class RegisterUserBloc extends Bloc<RegisterUserEvent, RegisterUserState> {
     }
 
     final result = await _registerUserRepo.registerUser(
-      registerUserModel: RegisterUserModel(
+      registerUserModel: User(
         email: event.email,
         password: event.password,
         userName: event.username,
+        enableBiometricAuth: event.enableFaceId,
       ),
     );
 

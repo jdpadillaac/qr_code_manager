@@ -8,6 +8,7 @@ class DriftUser extends Table {
   TextColumn get userName => text()();
   TextColumn get email => text()();
   TextColumn get password => text()();
+  BoolColumn get enableBiometricAuth => boolean()();
 }
 
 @DriftDatabase(tables: [DriftUser])

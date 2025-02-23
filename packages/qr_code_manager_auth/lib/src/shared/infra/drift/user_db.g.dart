@@ -53,8 +53,27 @@ class $DriftUserTable extends DriftUser
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _enableBiometricAuthMeta =
+      const VerificationMeta('enableBiometricAuth');
   @override
-  List<GeneratedColumn> get $columns => [id, userName, email, password];
+  late final GeneratedColumn<bool> enableBiometricAuth = GeneratedColumn<bool>(
+    'enable_biometric_auth',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("enable_biometric_auth" IN (0, 1))',
+    ),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    userName,
+    email,
+    password,
+    enableBiometricAuth,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -94,6 +113,17 @@ class $DriftUserTable extends DriftUser
     } else if (isInserting) {
       context.missing(_passwordMeta);
     }
+    if (data.containsKey('enable_biometric_auth')) {
+      context.handle(
+        _enableBiometricAuthMeta,
+        enableBiometricAuth.isAcceptableOrUnknown(
+          data['enable_biometric_auth']!,
+          _enableBiometricAuthMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_enableBiometricAuthMeta);
+    }
     return context;
   }
 
@@ -123,6 +153,11 @@ class $DriftUserTable extends DriftUser
             DriftSqlType.string,
             data['${effectivePrefix}password'],
           )!,
+      enableBiometricAuth:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.bool,
+            data['${effectivePrefix}enable_biometric_auth'],
+          )!,
     );
   }
 
@@ -137,11 +172,13 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
   final String userName;
   final String email;
   final String password;
+  final bool enableBiometricAuth;
   const DriftUserData({
     required this.id,
     required this.userName,
     required this.email,
     required this.password,
+    required this.enableBiometricAuth,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -150,6 +187,7 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
     map['user_name'] = Variable<String>(userName);
     map['email'] = Variable<String>(email);
     map['password'] = Variable<String>(password);
+    map['enable_biometric_auth'] = Variable<bool>(enableBiometricAuth);
     return map;
   }
 
@@ -159,6 +197,7 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
       userName: Value(userName),
       email: Value(email),
       password: Value(password),
+      enableBiometricAuth: Value(enableBiometricAuth),
     );
   }
 
@@ -172,6 +211,9 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
       userName: serializer.fromJson<String>(json['userName']),
       email: serializer.fromJson<String>(json['email']),
       password: serializer.fromJson<String>(json['password']),
+      enableBiometricAuth: serializer.fromJson<bool>(
+        json['enableBiometricAuth'],
+      ),
     );
   }
   @override
@@ -182,6 +224,7 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
       'userName': serializer.toJson<String>(userName),
       'email': serializer.toJson<String>(email),
       'password': serializer.toJson<String>(password),
+      'enableBiometricAuth': serializer.toJson<bool>(enableBiometricAuth),
     };
   }
 
@@ -190,11 +233,13 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
     String? userName,
     String? email,
     String? password,
+    bool? enableBiometricAuth,
   }) => DriftUserData(
     id: id ?? this.id,
     userName: userName ?? this.userName,
     email: email ?? this.email,
     password: password ?? this.password,
+    enableBiometricAuth: enableBiometricAuth ?? this.enableBiometricAuth,
   );
   DriftUserData copyWithCompanion(DriftUserCompanion data) {
     return DriftUserData(
@@ -202,6 +247,10 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
       userName: data.userName.present ? data.userName.value : this.userName,
       email: data.email.present ? data.email.value : this.email,
       password: data.password.present ? data.password.value : this.password,
+      enableBiometricAuth:
+          data.enableBiometricAuth.present
+              ? data.enableBiometricAuth.value
+              : this.enableBiometricAuth,
     );
   }
 
@@ -211,13 +260,15 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
           ..write('id: $id, ')
           ..write('userName: $userName, ')
           ..write('email: $email, ')
-          ..write('password: $password')
+          ..write('password: $password, ')
+          ..write('enableBiometricAuth: $enableBiometricAuth')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, userName, email, password);
+  int get hashCode =>
+      Object.hash(id, userName, email, password, enableBiometricAuth);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -225,7 +276,8 @@ class DriftUserData extends DataClass implements Insertable<DriftUserData> {
           other.id == this.id &&
           other.userName == this.userName &&
           other.email == this.email &&
-          other.password == this.password);
+          other.password == this.password &&
+          other.enableBiometricAuth == this.enableBiometricAuth);
 }
 
 class DriftUserCompanion extends UpdateCompanion<DriftUserData> {
@@ -233,31 +285,38 @@ class DriftUserCompanion extends UpdateCompanion<DriftUserData> {
   final Value<String> userName;
   final Value<String> email;
   final Value<String> password;
+  final Value<bool> enableBiometricAuth;
   const DriftUserCompanion({
     this.id = const Value.absent(),
     this.userName = const Value.absent(),
     this.email = const Value.absent(),
     this.password = const Value.absent(),
+    this.enableBiometricAuth = const Value.absent(),
   });
   DriftUserCompanion.insert({
     this.id = const Value.absent(),
     required String userName,
     required String email,
     required String password,
+    required bool enableBiometricAuth,
   }) : userName = Value(userName),
        email = Value(email),
-       password = Value(password);
+       password = Value(password),
+       enableBiometricAuth = Value(enableBiometricAuth);
   static Insertable<DriftUserData> custom({
     Expression<int>? id,
     Expression<String>? userName,
     Expression<String>? email,
     Expression<String>? password,
+    Expression<bool>? enableBiometricAuth,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (userName != null) 'user_name': userName,
       if (email != null) 'email': email,
       if (password != null) 'password': password,
+      if (enableBiometricAuth != null)
+        'enable_biometric_auth': enableBiometricAuth,
     });
   }
 
@@ -266,12 +325,14 @@ class DriftUserCompanion extends UpdateCompanion<DriftUserData> {
     Value<String>? userName,
     Value<String>? email,
     Value<String>? password,
+    Value<bool>? enableBiometricAuth,
   }) {
     return DriftUserCompanion(
       id: id ?? this.id,
       userName: userName ?? this.userName,
       email: email ?? this.email,
       password: password ?? this.password,
+      enableBiometricAuth: enableBiometricAuth ?? this.enableBiometricAuth,
     );
   }
 
@@ -290,6 +351,9 @@ class DriftUserCompanion extends UpdateCompanion<DriftUserData> {
     if (password.present) {
       map['password'] = Variable<String>(password.value);
     }
+    if (enableBiometricAuth.present) {
+      map['enable_biometric_auth'] = Variable<bool>(enableBiometricAuth.value);
+    }
     return map;
   }
 
@@ -299,7 +363,8 @@ class DriftUserCompanion extends UpdateCompanion<DriftUserData> {
           ..write('id: $id, ')
           ..write('userName: $userName, ')
           ..write('email: $email, ')
-          ..write('password: $password')
+          ..write('password: $password, ')
+          ..write('enableBiometricAuth: $enableBiometricAuth')
           ..write(')'))
         .toString();
   }
@@ -322,6 +387,7 @@ typedef $$DriftUserTableCreateCompanionBuilder =
       required String userName,
       required String email,
       required String password,
+      required bool enableBiometricAuth,
     });
 typedef $$DriftUserTableUpdateCompanionBuilder =
     DriftUserCompanion Function({
@@ -329,6 +395,7 @@ typedef $$DriftUserTableUpdateCompanionBuilder =
       Value<String> userName,
       Value<String> email,
       Value<String> password,
+      Value<bool> enableBiometricAuth,
     });
 
 class $$DriftUserTableFilterComposer
@@ -357,6 +424,11 @@ class $$DriftUserTableFilterComposer
 
   ColumnFilters<String> get password => $composableBuilder(
     column: $table.password,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get enableBiometricAuth => $composableBuilder(
+    column: $table.enableBiometricAuth,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -389,6 +461,11 @@ class $$DriftUserTableOrderingComposer
     column: $table.password,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get enableBiometricAuth => $composableBuilder(
+    column: $table.enableBiometricAuth,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$DriftUserTableAnnotationComposer
@@ -411,6 +488,11 @@ class $$DriftUserTableAnnotationComposer
 
   GeneratedColumn<String> get password =>
       $composableBuilder(column: $table.password, builder: (column) => column);
+
+  GeneratedColumn<bool> get enableBiometricAuth => $composableBuilder(
+    column: $table.enableBiometricAuth,
+    builder: (column) => column,
+  );
 }
 
 class $$DriftUserTableTableManager
@@ -448,11 +530,13 @@ class $$DriftUserTableTableManager
                 Value<String> userName = const Value.absent(),
                 Value<String> email = const Value.absent(),
                 Value<String> password = const Value.absent(),
+                Value<bool> enableBiometricAuth = const Value.absent(),
               }) => DriftUserCompanion(
                 id: id,
                 userName: userName,
                 email: email,
                 password: password,
+                enableBiometricAuth: enableBiometricAuth,
               ),
           createCompanionCallback:
               ({
@@ -460,11 +544,13 @@ class $$DriftUserTableTableManager
                 required String userName,
                 required String email,
                 required String password,
+                required bool enableBiometricAuth,
               }) => DriftUserCompanion.insert(
                 id: id,
                 userName: userName,
                 email: email,
                 password: password,
+                enableBiometricAuth: enableBiometricAuth,
               ),
           withReferenceMapper:
               (p0) =>

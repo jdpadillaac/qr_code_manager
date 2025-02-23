@@ -1,6 +1,6 @@
 import 'package:oxidized/oxidized.dart';
 import 'package:qr_code_manager_auth/src/modules/register/domain/interfaces/register_user_repo.dart';
-import 'package:qr_code_manager_auth/src/modules/register/domain/models/register_user_model.dart';
+import 'package:qr_code_manager_auth/src/shared/domain/entity/user.dart';
 import 'package:qr_code_manager_auth/src/shared/infra/drift/user_db.dart';
 
 final class DriftRegisterUserRepository extends RegisterUserRepo {
@@ -10,7 +10,7 @@ final class DriftRegisterUserRepository extends RegisterUserRepo {
   final DriftUserDataBase _driftUserDataBase;
   @override
   Future<Option<Exception>> registerUser({
-    required RegisterUserModel registerUserModel,
+    required User registerUserModel,
   }) async {
     try {
       await _driftUserDataBase
@@ -20,6 +20,7 @@ final class DriftRegisterUserRepository extends RegisterUserRepo {
               email: registerUserModel.email,
               password: registerUserModel.password,
               userName: registerUserModel.userName,
+              enableBiometricAuth: registerUserModel.enableBiometricAuth,
             ),
           );
       return const None();
