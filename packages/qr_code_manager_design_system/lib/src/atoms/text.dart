@@ -80,3 +80,30 @@ class QcmTitleLarge extends StatelessWidget {
     );
   }
 }
+
+class QcmBodyLarge extends StatelessWidget {
+  const QcmBodyLarge(
+    this.label, {
+    super.key,
+    this.color,
+    this.fontSize,
+    this.fontWeight,
+  });
+
+  final String label;
+  final Color? color;
+  final double? fontSize;
+  final FontWeight? fontWeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      label,
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+        color: color,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+      ),
+    );
+  }
+}

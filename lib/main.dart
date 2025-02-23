@@ -34,6 +34,7 @@ class App extends StatelessWidget {
             bodyLarge: GoogleFonts.manrope().copyWith(
               color: QcmColors.white,
               fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
             titleMedium: GoogleFonts.manrope().copyWith(color: QcmColors.white),
             titleLarge: GoogleFonts.manrope().copyWith(color: QcmColors.white),

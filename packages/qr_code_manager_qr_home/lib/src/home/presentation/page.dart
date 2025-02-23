@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart' show Modular;
 import 'package:qr_code_manager_design_system/qr_code_manager_design_system.dart';
@@ -33,16 +33,66 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const QcmPageTemplate(
-      body: Center(
+    return QcmPageTemplate(
+      floatingActionButton: const _FloatingAction(),
+      body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const QcmTitleLarge('Tus códigos QR'),
+            QcmVerticalSpacing.large,
             Expanded(
-              child: Center(child: SingleChildScrollView(child: Column())),
+              child: ListView.builder(
+                itemCount: 500,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      ListTile(
+                        onTap: () {},
+                        title: const QcmBodyLarge(
+                          'Codigo x',
+                          fontWeight: FontWeight.w800,
+                        ),
+                        leading: const Icon(
+                          Icons.qr_code,
+                          color: QcmColors.auroMetalSaurus,
+                        ),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios,
+                          color: QcmColors.auroMetalSaurus,
+                        ),
+                      ),
+                      Container(
+                        height: 1, // Grosor del borde
+                        color: QcmColors.darkJungleGreen, // Color del borde
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _FloatingAction extends StatelessWidget {
+  const _FloatingAction();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      color: Colors.white,
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all(
+          const EdgeInsets.all(QcmSpacing.medium),
+        ),
+        backgroundColor: WidgetStateProperty.all(QcmColors.unitedNationsBlue),
+      ),
+      icon: const Icon(Icons.qr_code_scanner),
+      onPressed: () {},
     );
   }
 }
