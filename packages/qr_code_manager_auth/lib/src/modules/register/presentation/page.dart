@@ -25,7 +25,22 @@ class _Pagelistener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<RegisterUserBloc, RegisterUserState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is RegisterUserSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: QcmTitleMedium('Uusario registrado exitosamente'),
+            ),
+          );
+          Modular.to.pop();
+        } else if (state is RegisterUserError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: QcmTitleMedium('Error al registrar el usuario'),
+            ),
+          );
+        }
+      },
       child: const _View(),
     );
   }
