@@ -32,7 +32,7 @@ class _PageListener extends StatelessWidget {
 }
 
 class _View extends StatelessWidget {
-  const _View({super.key});
+  const _View();
 
   @override
   Widget build(BuildContext context) {
