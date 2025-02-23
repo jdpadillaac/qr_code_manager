@@ -9,8 +9,13 @@ environment:
 resolution: workspace
 
 dependencies:
+  cupertino_icons: ^1.0.8
+  drift_flutter: ^0.2.4
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.0.0
+  flutter_modular: ^6.3.4
+  oxidized: ^6.2.0
 
 dev_dependencies:
   flutter_lints: ^5.0.0
