@@ -38,7 +38,10 @@ class App extends StatelessWidget {
             titleMedium: GoogleFonts.manrope().copyWith(color: QcmColors.white),
             titleLarge: GoogleFonts.manrope().copyWith(color: QcmColors.white),
           ),
-
+          appBarTheme: const AppBarTheme(
+            backgroundColor: QcmColors.darkGunmeta,
+            iconTheme: IconThemeData(color: QcmColors.white),
+          ),
           inputDecorationTheme: InputDecorationTheme(
             fillColor: QcmColors.darkJungleGreen,
             labelStyle: const TextStyle(color: QcmColors.white),
