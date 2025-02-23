@@ -10,17 +10,16 @@ class _Form extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const QcmTitleMedium(
-            'Correo electrónico',
-            fontWeight: FontWeight.w900,
-          ),
-          QcmVerticalSpacing.sl,
           const QcmTextFormField(
             hintText: 'Ingresa tu correo',
+            labelText: 'Correo electrónico',
             keyboardType: TextInputType.emailAddress,
           ),
           QcmVerticalSpacing.large,
-          const QcmTextFormObscure(hintText: 'Contraseña'),
+          const QcmTextFormObscure(
+            labelText: 'Contraseña',
+            hintText: 'Contraseña',
+          ),
           QcmVerticalSpacing.xxlarge,
           QcmElevatedButton(label: 'Iniciar sesión', onPressed: () {}),
         ],

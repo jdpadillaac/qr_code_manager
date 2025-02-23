@@ -36,21 +36,19 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QcmScrollablePageTemplate(
+    return const QcmScrollablePageTemplate(
       showAppBar: true,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const QcmHeadlineMedium('Bienvenido!', fontSize: 28),
-        const QcmTitleMedium(
+        QcmHeadlineMedium('Bienvenido!', fontSize: 28),
+        QcmTitleMedium(
           'Escanea y guarda tus códigos QR',
           color: QcmColors.auroMetalSaurus,
         ),
         QcmVerticalSpacing.medium,
-        const _Form(),
-        QcmElevatedButton(label: 'Registrate', onPressed: () {}),
-        QcmVerticalSpacing.xxlarge,
-        const _BackTologin(),
+        _Form(),
+        _BackTologin(),
       ],
     );
   }
