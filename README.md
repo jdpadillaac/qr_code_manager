@@ -28,11 +28,39 @@ No es necesario ningún proceso adicional, ya que todos los archivos generados y
 2. En el registro, después de ingresar los datos, debes presionar autenticar con Face ID y darle a registrar, después de un registro exitoso esto te llevará de nuevo a la vista de login.
 3. en la vista de login, será necesario que ingreses por primera vez los datos de autenticación y podrás ingresar al home
 4. Después del primer login, siempre requerirá face ID de manera automática.
-5. En el home solo sera necesario presionar el boton de escanear nuevo QR.
-6. Una vez escaneado te pedirá que le agregues un nombre,  si no se ingresa le agregara uno le agregara uno por defecto, una vez ingresado debes darle registrar
+5. En el home solo será necesario presionar el botón de escanear nuevo QR.
+6. Una vez escaneado te pedirá que le agregues un nombre,  si no se ingresa, le agregará uno por defecto, una vez ingresado debes darle registrar
 7. Y listo aparecerá el listado de QR guardado
-8. Al darle tap a un item se desplegará un modal con la información y si es un link aparecerá la opcion de abrir en navegador 
+8. Al darle tap a un ítem se desplegará un modal con la información y si es un link aparecerá la opción de abrir en navegador 
+
 
 ## Arquitectura de aplicación 
 
-La arquitectura esta basada en arquitectura limpia
+La arquitectura se basa en una arquitectura modular junto con arquitectura limpia, se usan paquetes como Flutter modular que nos ayuda a gestionar las dependencias de cada modulo y manejar las rutas en la aplicación
+
+## Estructura del proyecto
+
+los paquetes que usa el app se encuentras en la carpeta packages.
+
+- **qr_code_manager_auth**: se encarga de todo lo relacionado con autenticación
+- **qr_code_manager_design_system**: Es un pequeño sistema de diseño basado en atomic design que proporciona componentes reutilizables.
+- **qr_code_manager_qr_home**: es en donde se encuentra todo lo relacionado con el listado y creación de códigos QR 
+
+dentro de cada paquete se encuentran las capas de :
+
+- **infraestrcuture**: contiene todas las implementaciones del app
+- **domain**: es donde se centran modelos, entidades e interfaces definidas por la logica de negocio
+- **presentation**: donde se encuentra toda la UI 
+- **app**: donde se crea la implementación de los casos de uso 
+
+## Paquetes usados 
+- **Drift**: para la gestión de la base de datos local
+- **Flutter modular**: para el manejo de rutas y dependencias 
+- **Bloc**: para la gestion de estados
+- **Oxidized**: Para el uso del patron result 
+- **Pigeon**: para la generación de código para uso en nativo 
+
+por último como herramienta de análisis se usa **very_good_analysis**
+
+
+
