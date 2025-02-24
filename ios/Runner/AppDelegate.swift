@@ -9,13 +9,7 @@ import UIKit
   ) -> Bool {
       let flutterCtr = window?.rootViewController as? FlutterViewController
       
-      let biometricChannel = FlutterMethodChannel(name: "biometic_auth", binaryMessenger: (flutterCtr?.binaryMessenger)! )
-      biometricChannel.setMethodCallHandler { (call, result) in
-            if call.method == "validateBiometric" {
-                AuthHelper.auth(result: result)
-            }
-        }
-      
+      ExampleHostApiSetup.setUp(binaryMessenger:  (flutterCtr?.binaryMessenger)!, api: AuthHelper( ));
       
       let qrChannel = FlutterMethodChannel(name: "qr_scanner", binaryMessenger: (flutterCtr?.binaryMessenger)! )
       qrChannel.setMethodCallHandler { (call, result) in

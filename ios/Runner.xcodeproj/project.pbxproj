@@ -18,6 +18,7 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		AF08AF872D6BE17300EA5D89 /* auth_helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF08AF862D6BE16E00EA5D89 /* auth_helper.swift */; };
 		AF08AF8A2D6BE1FB00EA5D89 /* QrCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF08AF892D6BE1F400EA5D89 /* QrCodeScannerView.swift */; };
+		AFF1A6F82D6C1D0100D91B7F /* AuthPigeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1A6F72D6C1D0100D91B7F /* AuthPigeon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		A722A37718228AB39ABB58F0 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		AF08AF862D6BE16E00EA5D89 /* auth_helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth_helper.swift; sourceTree = "<group>"; };
 		AF08AF892D6BE1F400EA5D89 /* QrCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScannerView.swift; sourceTree = "<group>"; };
+		AFF1A6F72D6C1D0100D91B7F /* AuthPigeon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPigeon.swift; sourceTree = "<group>"; };
 		B17E629D2A74C02A6D4EFA74 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 		AF08AF852D6BE15C00EA5D89 /* auth */ = {
 			isa = PBXGroup;
 			children = (
+				AFF1A6F72D6C1D0100D91B7F /* AuthPigeon.swift */,
 				AF08AF862D6BE16E00EA5D89 /* auth_helper.swift */,
 			);
 			path = auth;
@@ -402,6 +405,7 @@
 				AF08AF8A2D6BE1FB00EA5D89 /* QrCodeScannerView.swift in Sources */,
 				AF08AF872D6BE17300EA5D89 /* auth_helper.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				AFF1A6F82D6C1D0100D91B7F /* AuthPigeon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +501,7 @@
 				DEVELOPMENT_TEAM = HRYX53V4CR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -680,6 +685,7 @@
 				DEVELOPMENT_TEAM = HRYX53V4CR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -703,6 +709,7 @@
 				DEVELOPMENT_TEAM = HRYX53V4CR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

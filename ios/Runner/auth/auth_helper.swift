@@ -6,29 +6,30 @@
 //
 import LocalAuthentication
 
-
-
-class AuthHelper {
-    
-    static func auth(result: @escaping FlutterResult ) -> Void {
-        var laContextError: NSError?
+class AuthHelper: ExampleHostApi {
+    func authenticate() throws -> Bool {
         let laContext = LAContext()
-        if  laContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &laContextError) {
-            laContext.evaluatePolicy(
-                .deviceOwnerAuthenticationWithBiometrics,
-                localizedReason: "Autenticate con FaceID")
-            { authSuccess,authErr in
-                if (authSuccess) {
-                    result(true)
-                } else {
-                    result(false)
-                }
-            }
-            
-        } else {
-            result(false)
-        }
-        
+           var laContextError: NSError?
+           var authResult = false
+           
+           let semaphore = DispatchSemaphore(value: 0) // Se inicializa antes de usarse
+
+           if laContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &laContextError) {
+               laContext.evaluatePolicy(
+                   .deviceOwnerAuthenticationWithBiometrics,
+                   localizedReason: "Autenticate con FaceID"
+               ) { authSuccess, _ in
+                   authResult = authSuccess
+                   semaphore.signal()
+               }
+               semaphore.wait() 
+           } else {
+               authResult = false
+           }
+           
+           return authResult
     }
+    
+  
     
 }
