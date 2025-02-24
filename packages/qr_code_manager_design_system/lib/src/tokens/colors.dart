@@ -8,4 +8,5 @@ final class QcmColors {
   static const auroMetalSaurus = Color(0xFF707B81);
   static const darkJungleGreen = Color(0xFF161F28);
   static const unitedNationsBlue = Color(0xFF5B9EE1);
+  static const yankeesBlue = Color(0xFF202E3C);
 }

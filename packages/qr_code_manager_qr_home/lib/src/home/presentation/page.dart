@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart' show Modular;
@@ -10,7 +11,8 @@ class QrHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<QrHomeBloc>(
-      create: (context) => Modular.get<QrHomeBloc>(),
+      create:
+          (context) => Modular.get<QrHomeBloc>()..add(const LoadQrListEvent()),
       child: const _Listener(),
     );
   }
@@ -30,11 +32,7 @@ class _Listener extends StatelessWidget {
             ),
           );
         } else if (state is ReadQrSuccesState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: QcmTitleMedium('Código QR leído: ${state.qrCode}'),
-            ),
-          );
+          showRegisterCodesheet(context, qrCode: state.qrCode);
         }
       },
       child: const _View(),
@@ -55,35 +53,40 @@ class _View extends StatelessWidget {
           children: [
             const QcmTitleLarge('Tus códigos QR'),
             QcmVerticalSpacing.large,
-            Expanded(
-              child: ListView.builder(
-                itemCount: 500,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      ListTile(
-                        onTap: () {},
-                        title: const QcmBodyLarge(
-                          'Codigo x',
-                          fontWeight: FontWeight.w800,
-                        ),
-                        leading: const Icon(
-                          Icons.qr_code,
-                          color: QcmColors.auroMetalSaurus,
-                        ),
-                        trailing: const Icon(
-                          Icons.arrow_forward_ios,
-                          color: QcmColors.auroMetalSaurus,
-                        ),
-                      ),
-                      Container(
-                        height: 1, // Grosor del borde
-                        color: QcmColors.darkJungleGreen, // Color del borde
-                      ),
-                    ],
-                  );
-                },
-              ),
+            BlocBuilder<QrHomeBloc, QrHomeState>(
+              builder: (context, state) {
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: state.qrList.length,
+                    itemBuilder: (context, index) {
+                      final item = state.qrList[index];
+                      return Column(
+                        children: [
+                          ListTile(
+                            onTap: () {},
+                            title: QcmBodyLarge(
+                              item.name,
+                              fontWeight: FontWeight.w800,
+                            ),
+                            leading: const Icon(
+                              Icons.qr_code,
+                              color: QcmColors.auroMetalSaurus,
+                            ),
+                            trailing: const Icon(
+                              Icons.arrow_forward_ios,
+                              color: QcmColors.auroMetalSaurus,
+                            ),
+                          ),
+                          Container(
+                            height: 1, // Grosor del borde
+                            color: QcmColors.darkJungleGreen, // Color del borde
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -108,6 +111,60 @@ class _FloatingAction extends StatelessWidget {
       icon: const Icon(Icons.qr_code_scanner),
       onPressed: () async {
         BlocProvider.of<QrHomeBloc>(context).add(const ReadQrEvent());
+      },
+    );
+  }
+}
+
+extension _ListenerHelper on _Listener {
+  void showRegisterCodesheet(
+    BuildContext entryContext, {
+    required String qrCode,
+  }) {
+    final qrCtr = TextEditingController()..text = qrCode;
+    final nameCtr = TextEditingController();
+
+    showCupertinoModalPopup<dynamic>(
+      context: entryContext,
+      builder: (context) {
+        return Material(
+          type: MaterialType.transparency,
+          child: Container(
+            padding: const EdgeInsets.all(QcmSpacing.large),
+            decoration: const BoxDecoration(
+              color: QcmColors.yankeesBlue,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(QcmSpacing.large),
+                topRight: Radius.circular(QcmSpacing.large),
+              ),
+            ),
+            height: MediaQuery.of(context).size.height * 0.7,
+            width: double.infinity,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const QcmTitleLarge('Guarda tu QR'),
+                  QcmTextFormField(
+                    labelText: 'Nombre de tu QR',
+                    controller: nameCtr,
+                  ),
+                  QcmVerticalSpacing.sl,
+                  QcmTextFormField(labelText: 'Qr leido', controller: qrCtr),
+                  QcmVerticalSpacing.large,
+                  QcmElevatedButton(
+                    label: 'Guardar',
+                    onPressed: () {
+                      BlocProvider.of<QrHomeBloc>(
+                        entryContext,
+                      ).add(SaveNewQrEvent(nameCtr.text, qrCtr.text));
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
       },
     );
   }
