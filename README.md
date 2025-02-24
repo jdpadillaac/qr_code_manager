@@ -73,3 +73,13 @@ por último como herramienta de análisis se usa **very_good_analysis**
 
 No fue necesario ya que con la última versión de flutter se puede trabajar comodamente con los workspaces de dart
 
+
+ ## Implementacion de test iniciales
+
+qr_code_manager_auth:
+
+![Test](https://i.ibb.co/XZPssCyh/Captura-de-pantalla-2025-02-24-a-la-s-11-36-51-a-m.png)
+
+
+![Test2](https://i.ibb.co/xqtz47Z7/Captura-de-pantalla-2025-02-24-a-la-s-11-37-37-a-m.png)
+
