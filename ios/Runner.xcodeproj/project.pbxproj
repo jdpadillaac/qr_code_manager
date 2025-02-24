@@ -19,6 +19,8 @@
 		AF08AF872D6BE17300EA5D89 /* auth_helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF08AF862D6BE16E00EA5D89 /* auth_helper.swift */; };
 		AF08AF8A2D6BE1FB00EA5D89 /* QrCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF08AF892D6BE1F400EA5D89 /* QrCodeScannerView.swift */; };
 		AFF1A6F82D6C1D0100D91B7F /* AuthPigeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1A6F72D6C1D0100D91B7F /* AuthPigeon.swift */; };
+		AFF1A6FA2D6C26B800D91B7F /* QrCodeScannerPigeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1A6F92D6C26A600D91B7F /* QrCodeScannerPigeon.swift */; };
+		AFF1A6FC2D6C26F900D91B7F /* QrCodeScannerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1A6FB2D6C26EB00D91B7F /* QrCodeScannerApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		AF08AF862D6BE16E00EA5D89 /* auth_helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth_helper.swift; sourceTree = "<group>"; };
 		AF08AF892D6BE1F400EA5D89 /* QrCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScannerView.swift; sourceTree = "<group>"; };
 		AFF1A6F72D6C1D0100D91B7F /* AuthPigeon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPigeon.swift; sourceTree = "<group>"; };
+		AFF1A6F92D6C26A600D91B7F /* QrCodeScannerPigeon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScannerPigeon.swift; sourceTree = "<group>"; };
+		AFF1A6FB2D6C26EB00D91B7F /* QrCodeScannerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScannerApi.swift; sourceTree = "<group>"; };
 		B17E629D2A74C02A6D4EFA74 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +179,8 @@
 		AF08AF882D6BE1C800EA5D89 /* QrScanner */ = {
 			isa = PBXGroup;
 			children = (
+				AFF1A6FB2D6C26EB00D91B7F /* QrCodeScannerApi.swift */,
+				AFF1A6F92D6C26A600D91B7F /* QrCodeScannerPigeon.swift */,
 				AF08AF892D6BE1F400EA5D89 /* QrCodeScannerView.swift */,
 			);
 			path = QrScanner;
@@ -405,6 +411,8 @@
 				AF08AF8A2D6BE1FB00EA5D89 /* QrCodeScannerView.swift in Sources */,
 				AF08AF872D6BE17300EA5D89 /* auth_helper.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				AFF1A6FC2D6C26F900D91B7F /* QrCodeScannerApi.swift in Sources */,
+				AFF1A6FA2D6C26B800D91B7F /* QrCodeScannerPigeon.swift in Sources */,
 				AFF1A6F82D6C1D0100D91B7F /* AuthPigeon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

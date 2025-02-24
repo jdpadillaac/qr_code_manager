@@ -4,64 +4,64 @@
 import Foundation
 
 #if os(iOS)
-  import Flutter
+import Flutter
 #elseif os(macOS)
-  import FlutterMacOS
+import FlutterMacOS
 #else
-  #error("Unsupported platform.")
+#error("Unsupported platform.")
 #endif
 
 /// Error class for passing custom error details to Dart side.
 final class PigeonError: Error {
-  let code: String
-  let message: String?
-  let details: Sendable?
-
-  init(code: String, message: String?, details: Sendable?) {
-    self.code = code
-    self.message = message
-    self.details = details
-  }
-
-  var localizedDescription: String {
-    return
-      "PigeonError(code: \(code), message: \(message ?? "<nil>"), details: \(details ?? "<nil>")"
-      }
+    let code: String
+    let message: String?
+    let details: Sendable?
+    
+    init(code: String, message: String?, details: Sendable?) {
+        self.code = code
+        self.message = message
+        self.details = details
+    }
+    
+    var localizedDescription: String {
+        return
+        "PigeonError(code: \(code), message: \(message ?? "<nil>"), details: \(details ?? "<nil>")"
+    }
 }
 
 private func wrapResult(_ result: Any?) -> [Any?] {
-  return [result]
+    return [result]
 }
 
 private func wrapError(_ error: Any) -> [Any?] {
-  if let pigeonError = error as? PigeonError {
+    if let pigeonError = error as? PigeonError {
+        return [
+            pigeonError.code,
+            pigeonError.message,
+            pigeonError.details,
+        ]
+    }
+    if let flutterError = error as? FlutterError {
+        return [
+            flutterError.code,
+            flutterError.message,
+            flutterError.details,
+        ]
+    }
     return [
-      pigeonError.code,
-      pigeonError.message,
-      pigeonError.details,
+        "\(error)",
+        "\(type(of: error))",
+        "Stacktrace: \(Thread.callStackSymbols)",
     ]
-  }
-  if let flutterError = error as? FlutterError {
-    return [
-      flutterError.code,
-      flutterError.message,
-      flutterError.details,
-    ]
-  }
-  return [
-    "\(error)",
-    "\(type(of: error))",
-    "Stacktrace: \(Thread.callStackSymbols)",
-  ]
 }
 
 private func isNullish(_ value: Any?) -> Bool {
-  return value is NSNull || value == nil
+    return value is NSNull || value == nil
 }
 
 private func nilOrValue<T>(_ value: Any?) -> T? {
-  if value is NSNull { return nil }
-  return value as! T?
+    if value is NSNull { return nil }
+    return value as! T?
 }
 
 private class OutSwiftPigeonCodecReader: FlutterStandardReader {
@@ -71,44 +71,44 @@ private class OutSwiftPigeonCodecWriter: FlutterStandardWriter {
 }
 
 private class OutSwiftPigeonCodecReaderWriter: FlutterStandardReaderWriter {
-  override func reader(with data: Data) -> FlutterStandardReader {
-    return OutSwiftPigeonCodecReader(data: data)
-  }
-
-  override func writer(with data: NSMutableData) -> FlutterStandardWriter {
-    return OutSwiftPigeonCodecWriter(data: data)
-  }
+    override func reader(with data: Data) -> FlutterStandardReader {
+        return OutSwiftPigeonCodecReader(data: data)
+    }
+    
+    override func writer(with data: NSMutableData) -> FlutterStandardWriter {
+        return OutSwiftPigeonCodecWriter(data: data)
+    }
 }
 
 class OutSwiftPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
-  static let shared = OutSwiftPigeonCodec(readerWriter: OutSwiftPigeonCodecReaderWriter())
+    static let shared = OutSwiftPigeonCodec(readerWriter: OutSwiftPigeonCodecReaderWriter())
 }
 
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol AuthNaviteApi {
-  func aunthenticate() throws -> Bool
+    func aunthenticate() throws -> Bool
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
 class AuthNaviteApiSetup {
-  static var codec: FlutterStandardMessageCodec { OutSwiftPigeonCodec.shared }
-  /// Sets up an instance of `AuthNaviteApi` to handle messages through the `binaryMessenger`.
-  static func setUp(binaryMessenger: FlutterBinaryMessenger, api: AuthNaviteApi?, messageChannelSuffix: String = "") {
-    let channelSuffix = messageChannelSuffix.count > 0 ? ".\(messageChannelSuffix)" : ""
-    let aunthenticateChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.qr_code_manager.AuthNaviteApi.aunthenticate\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      aunthenticateChannel.setMessageHandler { _, reply in
-        do {
-          let result = try api.aunthenticate()
-          reply(wrapResult(result))
-        } catch {
-          reply(wrapError(error))
+    static var codec: FlutterStandardMessageCodec { OutSwiftPigeonCodec.shared }
+    /// Sets up an instance of `AuthNaviteApi` to handle messages through the `binaryMessenger`.
+    static func setUp(binaryMessenger: FlutterBinaryMessenger, api: AuthNaviteApi?, messageChannelSuffix: String = "") {
+        let channelSuffix = messageChannelSuffix.count > 0 ? ".\(messageChannelSuffix)" : ""
+        let aunthenticateChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.qr_code_manager.AuthNaviteApi.aunthenticate\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+        if let api = api {
+            aunthenticateChannel.setMessageHandler { _, reply in
+                do {
+                    let result = try api.aunthenticate()
+                    reply(wrapResult(result))
+                } catch {
+                    reply(wrapError(error))
+                }
+            }
+        } else {
+            aunthenticateChannel.setMessageHandler(nil)
         }
-      }
-    } else {
-      aunthenticateChannel.setMessageHandler(nil)
     }
-  }
 }
 
 
