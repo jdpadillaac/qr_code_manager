@@ -11,7 +11,8 @@ Link para unirse en testflight
 Si el link aún no funciona por falta de aprobación en la tienda
 no dude en contactarme para agregarlo al grupo interno de testflight 
 
-
+## Link de video con funcionamiento del app
+[Link video funcionamiento](https://drive.google.com/file/d/11D-f9gUJsaMZHlzGqNcYjxR4H3sNuFzy/view?usp=sharing)
 
 
 ## La aplicacion aún no esta completamente lista para Android
@@ -68,6 +69,7 @@ dentro de cada paquete se encuentran las capas de :
 
 por último como herramienta de análisis se usa **very_good_analysis**
 
+## No fue necesario usar Melos package 
 
-  
+No fue necesario ya que con la última versión de flutter se puede trabajar comodamente con los workspaces de dart
 
