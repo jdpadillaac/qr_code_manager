@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart' show Modular;
 import 'package:qr_code_manager_design_system/qr_code_manager_design_system.dart';
@@ -23,7 +22,21 @@ class _Listener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<QrHomeBloc, QrHomeState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is ReadQrErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: QcmTitleMedium('Error al leer el código QR'),
+            ),
+          );
+        } else if (state is ReadQrSuccesState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: QcmTitleMedium('Código QR leído: ${state.qrCode}'),
+            ),
+          );
+        }
+      },
       child: const _View(),
     );
   }
@@ -94,14 +107,7 @@ class _FloatingAction extends StatelessWidget {
       ),
       icon: const Icon(Icons.qr_code_scanner),
       onPressed: () async {
-        const methodChannel = MethodChannel('qr_scanner');
-
-        final result = await methodChannel.invokeMethod('scanQrCode');
-        if (result == null) {
-          print('nada');
-        } else {
-          print('ok $result');
-        }
+        BlocProvider.of<QrHomeBloc>(context).add(const ReadQrEvent());
       },
     );
   }
