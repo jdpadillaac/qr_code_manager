@@ -10,6 +10,7 @@ class QcmTextFormField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.validator,
+    this.onFieldSubmitted,
   });
 
   final String? hintText;
@@ -17,6 +18,7 @@ class QcmTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final String labelText;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class QcmTextFormField extends StatelessWidget {
         TextFormField(
           controller: controller,
           validator: validator ?? _customvalidator,
+          onFieldSubmitted: onFieldSubmitted,
           keyboardType: keyboardType,
           decoration: InputDecoration(
             hintText: hintText,

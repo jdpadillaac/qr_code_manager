@@ -31,6 +31,12 @@ extension _ListenerHelper on _Listener {
                   QcmTextFormField(
                     labelText: 'Nombre de tu QR',
                     controller: nameCtr,
+                    onFieldSubmitted: (_) {
+                      BlocProvider.of<QrHomeBloc>(
+                        entryContext,
+                      ).add(SaveNewQrEvent(nameCtr.text, qrCtr.text));
+                      Navigator.of(context).pop();
+                    },
                   ),
                   QcmVerticalSpacing.sl,
                   QcmTextFormField(labelText: 'Qr leido', controller: qrCtr),

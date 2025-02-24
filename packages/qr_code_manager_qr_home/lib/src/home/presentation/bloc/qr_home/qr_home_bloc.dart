@@ -24,7 +24,10 @@ class QrHomeBloc extends Bloc<QrHomeEvent, QrHomeState> {
     Emitter<QrHomeState> emit,
   ) async {
     final result = await _appHomeUsecasee.save(
-      AppQr(name: event.name, value: event.value),
+      AppQr(
+        name: event.name.isEmpty ? 'Sin nombre' : event.name,
+        value: event.value,
+      ),
     );
 
     if (result.isSome()) {
