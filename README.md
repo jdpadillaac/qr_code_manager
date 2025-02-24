@@ -12,10 +12,15 @@ no dude en contactarme para agregarlo al grupo interno de testflight
 
 
 
-## La aplicacion aún no esta para Android
 
-Aún no se ha terminado la implementación en Android debido a que mi experiencia se basa más que todo en Flutter e iOS y aún no logré terminarla.
-Pero como la mayoría de desarrolladores no me rindo y en el trascurso del día de hoy 24-02-2025 la tendré 
+## La aplicacion aún no esta completamente lista para Android
+
+Aún no se ha terminado la implementación de lectura de QR en Android debido a que mi experiencia se basa más que todo en Flutter e iOS y aún no logré terminarla.
+
+Pero como la mayoría de desarrolladores no me rindo y en el trascurso del día de hoy 24-02-2025 la tendré.
+
+Si está funcional la implementacion de **fingerPrint o Huella** y aqui el link de descarga del apk [Link de descarga APK](https://drive.google.com/file/d/1UxCNO7C7i021v5yaPZP_p1sIUQisN2OP/view?usp=sharing)
+
 
 
 ## Proceso para ejecutar la app local 
@@ -63,4 +68,5 @@ dentro de cada paquete se encuentran las capas de :
 por último como herramienta de análisis se usa **very_good_analysis**
 
 
+  
 
