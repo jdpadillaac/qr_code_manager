@@ -38,6 +38,9 @@ android {
         }
     }
 }
+dependencies {
+    implementation("androidx.biometric:biometric-ktx:1.4.0-alpha02")
+}
 
 flutter {
     source = "../.."
