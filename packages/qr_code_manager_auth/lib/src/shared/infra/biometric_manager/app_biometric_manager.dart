@@ -7,8 +7,8 @@ final class PlatformBiometricManager extends BiometricManager {
   @override
   Future<Result<bool, Exception>> authenticate() async {
     try {
-      final api = ExampleHostApi();
-      final result = await api.authenticate();
+      final api = AuthNaviteApi();
+      final result = await api.aunthenticate();
       return Result.ok(result);
     } on PlatformException catch (e) {
       return Result.err(Exception(e.toString()));

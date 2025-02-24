@@ -6,8 +6,8 @@
 //
 import LocalAuthentication
 
-class AuthHelper: ExampleHostApi {
-    func authenticate() throws -> Bool {
+class AuthHelper: AuthNaviteApi {
+    func aunthenticate() throws -> Bool {
         let laContext = LAContext()
            var laContextError: NSError?
            var authResult = false

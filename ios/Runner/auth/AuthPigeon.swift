@@ -64,89 +64,65 @@ private func nilOrValue<T>(_ value: Any?) -> T? {
   return value as! T?
 }
 
-/// Generated class from Pigeon that represents data sent in messages.
-struct NativeFaceIdResponse {
-  var success: Bool? = nil
-  var message: String? = nil
-
-
-  // swift-format-ignore: AlwaysUseLowerCamelCase
-  static func fromList(_ pigeonVar_list: [Any?]) -> NativeFaceIdResponse? {
-    let success: Bool? = nilOrValue(pigeonVar_list[0])
-    let message: String? = nilOrValue(pigeonVar_list[1])
-
-    return NativeFaceIdResponse(
-      success: success,
-      message: message
-    )
-  }
-  func toList() -> [Any?] {
-    return [
-      success,
-      message,
-    ]
-  }
+private class OutSwiftPigeonCodecReader: FlutterStandardReader {
 }
 
-private class AuthPigeonPigeonCodecReader: FlutterStandardReader {
-  override func readValue(ofType type: UInt8) -> Any? {
-    switch type {
-    case 129:
-      return NativeFaceIdResponse.fromList(self.readValue() as! [Any?])
-    default:
-      return super.readValue(ofType: type)
-    }
-  }
+private class OutSwiftPigeonCodecWriter: FlutterStandardWriter {
 }
 
-private class AuthPigeonPigeonCodecWriter: FlutterStandardWriter {
-  override func writeValue(_ value: Any) {
-    if let value = value as? NativeFaceIdResponse {
-      super.writeByte(129)
-      super.writeValue(value.toList())
-    } else {
-      super.writeValue(value)
-    }
-  }
-}
-
-private class AuthPigeonPigeonCodecReaderWriter: FlutterStandardReaderWriter {
+private class OutSwiftPigeonCodecReaderWriter: FlutterStandardReaderWriter {
   override func reader(with data: Data) -> FlutterStandardReader {
-    return AuthPigeonPigeonCodecReader(data: data)
+    return OutSwiftPigeonCodecReader(data: data)
   }
 
   override func writer(with data: NSMutableData) -> FlutterStandardWriter {
-    return AuthPigeonPigeonCodecWriter(data: data)
+    return OutSwiftPigeonCodecWriter(data: data)
   }
 }
 
-class AuthPigeonPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
-  static let shared = AuthPigeonPigeonCodec(readerWriter: AuthPigeonPigeonCodecReaderWriter())
+class OutSwiftPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
+  static let shared = OutSwiftPigeonCodec(readerWriter: OutSwiftPigeonCodecReaderWriter())
 }
 
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
-protocol ExampleHostApi {
-  func authenticate() throws -> Bool
+protocol AuthNaviteApi {
+  func aunthenticate() throws -> Bool
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
-class ExampleHostApiSetup {
-  static var codec: FlutterStandardMessageCodec { AuthPigeonPigeonCodec.shared }
-  /// Sets up an instance of `ExampleHostApi` to handle messages through the `binaryMessenger`.
-  static func setUp(binaryMessenger: FlutterBinaryMessenger, api: ExampleHostApi?, messageChannelSuffix: String = "") {
+class AuthNaviteApiSetup {
+  static var codec: FlutterStandardMessageCodec { OutSwiftPigeonCodec.shared }
+  /// Sets up an instance of `AuthNaviteApi` to handle messages through the `binaryMessenger`.
+  static func setUp(binaryMessenger: FlutterBinaryMessenger, api: AuthNaviteApi?, messageChannelSuffix: String = "") {
     let channelSuffix = messageChannelSuffix.count > 0 ? ".\(messageChannelSuffix)" : ""
-    let authenticateChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.qr_code_manager.ExampleHostApi.authenticate\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    let aunthenticateChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.qr_code_manager.AuthNaviteApi.aunthenticate\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
-      authenticateChannel.setMessageHandler { _, reply in
+      aunthenticateChannel.setMessageHandler { _, reply in
         do {
-          let result = try api.authenticate()
+          let result = try api.aunthenticate()
           reply(wrapResult(result))
         } catch {
           reply(wrapError(error))
         }
       }
     } else {
-      authenticateChannel.setMessageHandler(nil)
+      aunthenticateChannel.setMessageHandler(nil)
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
