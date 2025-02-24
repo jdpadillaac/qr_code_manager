@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart';
 import 'package:oxidized/oxidized.dart';
 import 'package:qr_code_manager_auth/src/modules/register/domain/interfaces/register_user_repo.dart';
 import 'package:qr_code_manager_auth/src/shared/domain/entity/user.dart';
@@ -20,7 +21,9 @@ final class DriftRegisterUserRepository extends RegisterUserRepo {
               email: registerUserModel.email,
               password: registerUserModel.password,
               userName: registerUserModel.userName,
-              enableBiometricAuth: registerUserModel.enableBiometricAuth,
+              enableBiometricAuth: Value<bool>(
+                registerUserModel.enableBiometricAuth,
+              ),
             ),
           );
       return const None();

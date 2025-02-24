@@ -9,3 +9,4 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.g"
+    - "**/*_test.mocks.dart"

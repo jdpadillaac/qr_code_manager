@@ -17,6 +17,7 @@ dependencies:
   flutter_bloc: ^9.0.0
   flutter_modular: ^6.3.4
   flutter_secure_storage: ^9.2.4
+  mockito: ^5.4.5
   oxidized: ^6.2.0
 
 dev_dependencies:

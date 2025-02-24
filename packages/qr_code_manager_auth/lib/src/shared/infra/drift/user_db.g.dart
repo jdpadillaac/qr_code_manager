@@ -61,10 +61,11 @@ class $DriftUserTable extends DriftUser
     aliasedName,
     false,
     type: DriftSqlType.bool,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
       'CHECK ("enable_biometric_auth" IN (0, 1))',
     ),
+    defaultValue: const Constant(false),
   );
   @override
   List<GeneratedColumn> get $columns => [
@@ -121,8 +122,6 @@ class $DriftUserTable extends DriftUser
           _enableBiometricAuthMeta,
         ),
       );
-    } else if (isInserting) {
-      context.missing(_enableBiometricAuthMeta);
     }
     return context;
   }
@@ -298,11 +297,10 @@ class DriftUserCompanion extends UpdateCompanion<DriftUserData> {
     required String userName,
     required String email,
     required String password,
-    required bool enableBiometricAuth,
+    this.enableBiometricAuth = const Value.absent(),
   }) : userName = Value(userName),
        email = Value(email),
-       password = Value(password),
-       enableBiometricAuth = Value(enableBiometricAuth);
+       password = Value(password);
   static Insertable<DriftUserData> custom({
     Expression<int>? id,
     Expression<String>? userName,
@@ -387,7 +385,7 @@ typedef $$DriftUserTableCreateCompanionBuilder =
       required String userName,
       required String email,
       required String password,
-      required bool enableBiometricAuth,
+      Value<bool> enableBiometricAuth,
     });
 typedef $$DriftUserTableUpdateCompanionBuilder =
     DriftUserCompanion Function({
@@ -544,7 +542,7 @@ class $$DriftUserTableTableManager
                 required String userName,
                 required String email,
                 required String password,
-                required bool enableBiometricAuth,
+                Value<bool> enableBiometricAuth = const Value.absent(),
               }) => DriftUserCompanion.insert(
                 id: id,
                 userName: userName,
