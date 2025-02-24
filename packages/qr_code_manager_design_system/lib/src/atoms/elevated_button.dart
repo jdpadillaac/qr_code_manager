@@ -27,3 +27,26 @@ class QcmElevatedButton extends StatelessWidget {
     );
   }
 }
+
+class QcmOutlinedButton extends StatelessWidget {
+  const QcmOutlinedButton({
+    required this.label,
+    required this.onPressed,
+    super.key,
+  });
+
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton(
+        style: const ButtonStyle(),
+        onPressed: onPressed,
+        child: QcmTitleLarge(label),
+      ),
+    );
+  }
+}

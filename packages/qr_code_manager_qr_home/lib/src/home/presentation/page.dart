@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart' show Modular;
 import 'package:qr_code_manager_design_system/qr_code_manager_design_system.dart';
 import 'package:qr_code_manager_qr_home/src/home/domain/entity/qr.dart';
 import 'package:qr_code_manager_qr_home/src/home/presentation/bloc/qr_home/qr_home_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+part 'widget/detail_sheet.dart';
 part 'widget/qr_list.dart';
 part 'widget/register_sheet.dart';
 

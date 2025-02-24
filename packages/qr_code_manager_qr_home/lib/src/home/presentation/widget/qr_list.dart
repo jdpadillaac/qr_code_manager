@@ -15,7 +15,9 @@ class _QrList extends StatelessWidget {
           return Column(
             children: [
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  showDetailSheet(context, qr: item);
+                },
                 title: QcmBodyLarge(item.name, fontWeight: FontWeight.w800),
                 leading: const Icon(
                   Icons.qr_code,
