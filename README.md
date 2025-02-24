@@ -5,7 +5,8 @@ QR code manager es una aplicacion para escanear codigos QR y guardarlos en una b
 
 
 Link para unirse en testflight
-[https://testflight.apple.com/join/q7pAF8Gw)](Enlace%20para%20probar%20desde%20TestFlight)
+[Link appp Testflight](https://testflight.apple.com/join/q7pAF8Gw)
+
 
 Si el link aún no funciona por falta de aprobación en la tienda
 no dude en contactarme para agregarlo al grupo interno de testflight 
