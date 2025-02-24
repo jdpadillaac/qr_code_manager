@@ -10,7 +10,7 @@ import UIKit
         let flutterCtr = window?.rootViewController as? FlutterViewController
         
         AuthNaviteApiSetup.setUp(binaryMessenger:  (flutterCtr?.binaryMessenger)!, api: AuthHelper( ));
-        QrScannerNativeApiSetup.setUp(binaryMessenger: (flutterCtr?.binaryMessenger)!, api: QrCodeScannerApi( viewController:  QrCodeScannerView()))
+        QrScannerNativeApiSetup.setUp(binaryMessenger: (flutterCtr?.binaryMessenger)!, api: QrCodeScannerApi( viewController:  flutterCtr!))
         
         GeneratedPluginRegistrant.register(with: self)
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
